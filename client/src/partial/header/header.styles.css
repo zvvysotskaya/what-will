@@ -1,0 +1,18 @@
+.header {
+    background-color: #9900cc;
+    color: #ffffff;
+    height:3.5rem;
+    margin: 0;
+    line-height: 3.5rem;
+    
+}
+.login, .home_icon {
+    text-shadow: 2px 2px 4px #600080;
+    
+}
+.home_icon_icon{
+   
+}
+.login {
+    font-size: 1.5rem;
+}

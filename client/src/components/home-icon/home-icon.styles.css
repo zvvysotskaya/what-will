@@ -1,0 +1,11 @@
+
+    .home_icon:hover {
+        opacity: 0.3;
+        cursor: pointer;
+    }
+
+.home_icon {
+    transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+    opacity: 1;   
+}
