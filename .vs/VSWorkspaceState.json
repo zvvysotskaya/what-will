@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\pages\\home-page",
+    "\\client\\src\\partial\\header",
+    "\\node-controllers"
+  ],
+  "SelectedNode": "\\node-controllers\\apiController.js",
+  "PreviewInSolutionExplorer": false
+}

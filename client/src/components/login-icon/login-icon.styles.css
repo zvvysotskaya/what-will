@@ -8,3 +8,13 @@
     -webkit-transition: opacity 1.5s;
     opacity: 1;
 }
+.login_span {
+    color: #ffffff;
+    text-decoration: none;
+}
+    .login_span:hover {
+        color: #ffffff;
+        text-decoration: none;
+        text-decoration-style: none;
+        text-decoration-line: none;
+    }

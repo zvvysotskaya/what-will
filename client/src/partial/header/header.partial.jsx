@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './header.styles.css';
 import HomeIcon from '../../components/home-icon/home-icon.component';
@@ -10,10 +11,10 @@ const Header = () => (
         <div className='container'>
             <div className='row'>
                 <div className='col-2 d-flex justify-content-between'>
-                    <p className='home_icon'><HomeIcon/> /></p>
+                    <Link to='/' className='home_icon'><HomeIcon/></Link>
                 </div>
-                <div className='col-10 d-flex justify-content-end'>
-                    <p className='login d-flex justify-content-between'><LoginIcon /></p>
+                <div className='col-10 d-flex justify-content-end '>
+                    <Link to='loginSignupPage' className='login d-flex justify-content-between'><LoginIcon /></Link>
                 </div>
             </div>
         </div>
