@@ -5,7 +5,7 @@ import Signup from '../../components/signup/signup.component';
 const LoginSignUp = () => (
     <div>
         <Login />
-        <Signup/>
+        <Signup />
     </div>
 );
 export default LoginSignUp;

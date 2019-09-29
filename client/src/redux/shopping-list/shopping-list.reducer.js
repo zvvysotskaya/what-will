@@ -2,7 +2,8 @@ import ShoppingActionTypes from './shopping-list.types';
 
 
 const INITIAL_STATE = {
-    shoppingList: []
+    shoppingList: [],
+    shoppingListInsert: null
 };
 const shoppingListReducer = (state = INITIAL_STATE, action) => {
     
@@ -15,6 +16,16 @@ const shoppingListReducer = (state = INITIAL_STATE, action) => {
             
         }
         case ShoppingActionTypes.FETCH_SHOPPING_LIST_FAILURE: return {
+            ...state
+        }
+        case ShoppingActionTypes.INSER_SHOPPING_LIST_START: return {
+            ...state
+        }
+        case ShoppingActionTypes.INSER_SHOPPING_LIST_SUCCESS: return {
+            ...state,
+            shoppingListInsert: action.payload
+        }
+        case ShoppingActionTypes.INSER_SHOPPING_LIST_FAILURE: return {
             ...state
         }
 

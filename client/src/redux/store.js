@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import RootReducer from './root-reducer';
 import createSagaMiddleware from 'redux-saga';
 
-import { fetchShoppingListStart } from './shopping-list/shopping-list.sagas';
+import { rootSaga } from './root-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
@@ -11,5 +11,5 @@ if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
 };
 const store = createStore(RootReducer, applyMiddleware(...middlewares));
-sagaMiddleware.run(fetchShoppingListStart);
+sagaMiddleware.run(rootSaga);
 export default store;
