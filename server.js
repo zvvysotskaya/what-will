@@ -42,7 +42,9 @@ app.use('/shoppingInsert', function (req, res, next) {
 app.use('/signUp', function (req, res, next) {
     next();
 });
-
+app.use('/allFromUser', function (req, res, next) {
+    next();
+});
 //app.get('*', (req, res) => {
 //    res.send('<h1>The file doesnot exist!</h1>');
 //})
