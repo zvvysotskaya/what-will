@@ -4,20 +4,33 @@ import './signup.styles.css';
 
 
 const Signup = () => {
-    
-        const [user, setUser] = useState({ email: '' });
-        useEffect(() => {
-       
-        },
-            []
-        );
+
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        fetch('/allFromUser')
+            .then(res => res.json())
+            .then(res => { return setUser(res) })
+            .then(response => (console.log({ response })))
+            .catch((error) => (console.log(error)));
+    },
+        []
+    );
+
+    var emailsArray = [];
+    //   console.log(returnVal);
+    for (var i = 0; i < user.length; i++) {
+        var allEmails = Object.values(user)[i].email;
+        emailsArray.push(allEmails);
         
-    const fff = fetch('/allFromUser')
-        .then(res => res.json())
-        .then(res => (setUser(res)))
-        .then(response => (console.log(response)))
-        .catch((error) => (console.log(error)));
-    setUser(fff.email);
+    }
+    console.log('all emails: ' + emailsArray);
+
+   
+    
+    
+    console.log('user.length ' + user.length)
+    
+
     const [val, setVal] = useState({
         username: '',
         prefix: '',
@@ -46,28 +59,13 @@ const Signup = () => {
             .catch((error) => (console.log(error)));
 
         if (val.password !== val.confirmpassword) {
-            alert('Password does not match');
+            alert('Password does not match!');
             return;
-        } else {
-            alert('Pasword match! Success!');
-        }
-
-        user.email.map(user => (<li key={user.id}>
-            <p >{user.email}</p>
-            </li>)
-        )   
-       
-        if (val.email===user.email) {
-            alert('the Email already exists');
-            console.log('the user email: ' + user.email);
-            
-        } else {
-            alert('email not found');
-            console.log('the user email: ' + user.email);
-           
-            }
-        
-        e.target.reset();     
+        } 
+      
+        if (emailsArray.indexOf(val.email) > -1) {
+            alert('Sorry, such email already exists');                        
+        } 
     }
     
 

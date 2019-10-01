@@ -3,14 +3,12 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\components",
     "\\client\\src\\components\\login",
     "\\client\\src\\components\\signup",
-    "\\client\\src\\pages",
-    "\\client\\src\\pages\\login-signup-page",
     "\\client\\src\\redux",
+    "\\client\\src\\redux\\shopping-list",
     "\\node-controllers"
   ],
-  "SelectedNode": "\\node-controllers\\apiController.js",
+  "SelectedNode": "\\client\\src\\redux\\shopping-list\\shopping-list.sagas.js",
   "PreviewInSolutionExplorer": false
 }
