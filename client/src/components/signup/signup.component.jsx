@@ -1,9 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './signup.styles.css';
+import {fetchSignupSuccess} from '../../redux/signup-login/signup-login.actions';
 
 
-const Signup = () => {
+const Signup = ({ fetchSignupSuccess}) => {
 
     const [user, setUser] = useState({});
     useEffect(() => {
@@ -20,16 +23,11 @@ const Signup = () => {
     //   console.log(returnVal);
     for (var i = 0; i < user.length; i++) {
         var allEmails = Object.values(user)[i].email;
-        emailsArray.push(allEmails);
-        
+        emailsArray.push(allEmails);        
     }
-    console.log('all emails: ' + emailsArray);
-
-   
+    console.log('all emails: ' + emailsArray);   
     
-    
-    console.log('user.length ' + user.length)
-    
+    console.log('user.length ' + user.length)    
 
     const [val, setVal] = useState({
         username: '',
@@ -47,16 +45,8 @@ const Signup = () => {
             password: val.password,
             confirmpassword: val.confirmpassword
         }
-        fetch('/signUp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            bodyUsed: true,
-            body: JSON.stringify(data)
-
-        })
-            .then(res => (res.json()))
-            .then(res => (console.log(res)))
-            .catch((error) => (console.log(error)));
+        
+        fetchSignupSuccess(data);
 
         if (val.password !== val.confirmpassword) {
             alert('Password does not match!');
@@ -67,16 +57,11 @@ const Signup = () => {
             alert('Sorry, such email already exists');                        
         } 
     }
-    
-
     return (
         <div className='container'>
             <div className='row justify-content-center'>
                 <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5'>
-                    <h3 className='text-center mt-3 mb-3'>Create an Account</h3>
-                    {
-                       
-                    }
+                    <h3 className='text-center mt-3 mb-3'>Create an Account</h3>                    
                     <form onSubmit={submit} method="POST">
                         <div className='form-group' >
                             <label>Prefix:</label>
@@ -145,4 +130,7 @@ const Signup = () => {
     );
        
 };
-export default Signup;
+const mapDispatchToProps = dispatch=>({
+    fetchSignupSuccess: (val) => dispatch(fetchSignupSuccess(val))
+});
+export default connect(null, mapDispatchToProps)(Signup);

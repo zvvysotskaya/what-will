@@ -1,0 +1,6 @@
+const SignupLoginActionTypes = {
+    FETCH_SIGNUP_START: 'FETCH_SIGNUP_START',
+    FETCH_SIGNUP_SUCCESS: 'FETCH_SIGNUP_SUCCESS',
+    FETCH_SIGNUP_FAILUER: 'FETCH_SIGNUP_FAILURE'
+}
+export default SignupLoginActionTypes;

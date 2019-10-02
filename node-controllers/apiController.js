@@ -31,7 +31,7 @@ module.exports = function (app) {
     app.post('/signUp', function (req, res) {
         if (connection) {
             // connection.connect()
-            console.log('connected to db, to user table ');
+            console.log('signup connected to db, to user table ');
             //check if email exist in db
             let email = req.body.email
             connection.query('SELECT * FROM user where email = ' + connection.escape(email), function (error, results, fields) {
@@ -58,8 +58,8 @@ module.exports = function (app) {
                         connection.query('INSERT INTO user SET ?', post, function (error, results, fields) {
 
                             if (error) throw error;
-
-                            res.send(console.log("Success! username: " + req.body.username));
+                          //  res.json()
+                           res.send(console.log("Success! username: " + req.body.username));
                         });
                     } else {
                         console.log('password does not match!');
