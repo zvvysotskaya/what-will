@@ -1,13 +1,18 @@
-const connection=require('../client/src/mysql-config/connection')
+var express = require('express');
+var connection = require('../client/src/mysql-config/connection');
+var path = require('path');
+let app = express();
+var router = express.Router();
+
 module.exports = function (app) {
     app.get('/shopping', function (req, res) {
         if (connection) {
             console.log('Connected from get shopping');
-            //  connection.connect();
+            
             connection.query('SELECT * FROM users', function (error, results, field) {
                 if (error) throw error;
                 res.send(results);
-                //     connection.end();
+                
             });
         } else {
             console.log('Wrong connection!');
@@ -29,21 +34,15 @@ module.exports = function (app) {
         }
     });
     app.post('/signUp', function (req, res) {
-        if (connection) {
-            // connection.connect()
+        if (connection) { //            // connection.connect()
             console.log('signup connected to db, to user table ');
             //check if email exist in db
             let email = req.body.email
             connection.query('SELECT * FROM user where email = ' + connection.escape(email), function (error, results, fields) {
-                if (error) throw error;
-            //   for (var i = 0; i < results.length; i++) {
-              //      var row = results[i];
-                //    console.log(i);
-                //}
+                if (error) throw error;           
                // console.log(result);
                 if (results.length<1) {
                     console.log('We  do not have such email! Count: ' + results.length)
-
                     //insert data intodb
                     let post = {
                         prefix: req.body.prefix,
@@ -69,21 +68,45 @@ module.exports = function (app) {
                 }
             });
             } else {
-                console.log('Sorry, wrong connection!');
+              console.log('Sorry, wrong connection!');
             }       
+    });
+    app.post('/signin', function (req, res, next) {
 
-        });
+        if (connection) {
+            console.log('(signin) connected to table - user');
+            let email = req.body.email;
+            let password = req.body.password;
+            connection.query('SELECT * FROM user where email = ' + connection.escape(email), function (error, results, fields) {
+                if (error) throw error;
+                if (results.length > 0) {
+                    let result = results[0].password;
+                    if (result === password) {  
+                      //  res.send(result);
+                        res.send(console.log('email: ' + email + ' password: ' + result + ' send headers: ' + res.headersSent + 'path: ' + process.cwd() +'\\client\\src\\img\\home.svg'));
+                    } else {
+                        
+                        console.log('wrong password!!!')
+                    }
+                } else {
+                    console.log('email does not exists')
+                }
+            });
+        } else {
+            console.log('Wrong connection!')
+        }
+    });
 
-    app.get('/allFromUser', function (req, res) {
+    app.get('/allFromUser', function (req, res) {//
 
         if (connection) {
             console.log('Connected from allFromUser');
            //   connection.connect();
             
             connection.query('SELECT * FROM user', function (error, results, fields) {
-                if (error) throw error;
-                res.send(results);
-                
+               if (error) throw error;
+               res.send(results);
+               
             });
           //  connection.end();
         } else {
