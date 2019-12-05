@@ -31,7 +31,7 @@ if (process.env.NODE_ENV != 'production') {
     require('dotenv').config();
 };
 let db;
-//REACT_APP_MONGODB_CONNECTION_STRINGS = 'mongodb+srv://zvvysotskaya:stopper@cluster0-ihjtf.mongodb.net/ToDoApp?retryWrites=true&w=majority'
+
 mongodb.connect(REACT_APP_MONGODB_CONNECTION_STRINGS, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     //assert.equal(null, err);
 
