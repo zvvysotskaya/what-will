@@ -1,16 +1,17 @@
-var express = require('express');
-var cors = require('cors');
-var helmet = require('helmet');
-var path = require('path');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const path = require('path');
+const mongodb = require('mongodb');
+//const assert = require('assert');
 
-
-
-var app = express();
+const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('client/public'));
+
 
 
 
@@ -23,12 +24,20 @@ if (process.env.NODE_ENV === 'production') {
 }
 if (process.env.NODE_ENV != 'production') {
     app.use(express.static(path.join(__dirname, 'client/public')));
-  // app.get('/', function (req, res) {
- //       res.sendFile(path.join(__dirname, 'client/public', 'index.html'));       
-    //   });  
-    console.log('path: ' + __dirname, 'client/public', 'index.html', ' process: ' + process.cwd()+'\\client\\public\\index.html')
-};
 
+    app.get('/', function (req, res) {
+        res.sendFile(__dirname, 'client/public', 'index.html');
+    })
+    require('dotenv').config();
+};
+let db;
+//REACT_APP_MONGODB_CONNECTION_STRINGS = 'mongodb+srv://zvvysotskaya:stopper@cluster0-ihjtf.mongodb.net/ToDoApp?retryWrites=true&w=majority'
+mongodb.connect(REACT_APP_MONGODB_CONNECTION_STRINGS, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
+    //assert.equal(null, err);
+
+
+    db = client.db('ToDoApp');
+});
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
@@ -43,18 +52,7 @@ app.get('/sts', (req, res, next)=> {
  //   res.send('<h1>Hello</h1>');
 })
 
-//app.use('/shopping', function (req, res, next) {
-//    next();
-//});
-//app.use('/shoppingInsert', function (req, res, next) {
-//    next();
-//});
-//app.use('/signUp', function (req, res, next) {
-//    next();
-//});
-//app.use('/allFromUser', function (req, res, next) {
-//    next();
-//});
+
 app.all('*', (req, res) => {
     res.send('<h1>The file does not exist!</h1><h1>The file does not exist!</h1><h1>The file does not exist!</h1><h1>The file does not exist!</h1>');
 })

@@ -1,14 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\client",
-    "\\client\\src",
-    "\\client\\src\\components\\login",
-    "\\client\\src\\components\\signup",
-    "\\client\\src\\redux",
-    "\\client\\src\\redux\\shopping-list",
-    "\\node-controllers"
+    ""
   ],
-  "SelectedNode": "\\client\\src\\redux\\shopping-list\\shopping-list.sagas.js",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }
