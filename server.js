@@ -9,7 +9,7 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static('client/public'));
 
 
@@ -31,8 +31,9 @@ if (process.env.NODE_ENV != 'production') {
     require('dotenv').config();
 };
 let db;
+let connectionStrings = process.env.REACT_APP_DB_URL
 
-mongodb.connect(REACT_APP_MONGODB_CONNECTION_STRINGS, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
+mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     //assert.equal(null, err);
 
 
