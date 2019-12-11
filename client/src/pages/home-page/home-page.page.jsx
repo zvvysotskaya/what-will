@@ -18,7 +18,8 @@ const HomePage = ({ fetchShoppingListStart}) => {
     );    
    return (         
             <div>
-            <Link to='/shoppingPage'>Shopping Page</Link>
+           <Link to='/shoppingPage'>Shopping Page</Link><br/>
+           <Link to='/createShoppingListPage'>Create A Shopping List</Link>
                 <h1>Home Page</h1>
                 
                 {                    
