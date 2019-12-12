@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('client/public'));
 
 
-
-
+const apiController = require('./node-controllers/apiController')
+apiController(app);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
@@ -30,21 +30,27 @@ if (process.env.NODE_ENV != 'production') {
     })
     require('dotenv').config();
 };
-let db;
-let connectionStrings = process.env.REACT_APP_DB_URL
-
-mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
+//let db;
+//let connectionStrings = process.env.REACT_APP_DB_URL
+//mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     //assert.equal(null, err);
+ //  db = client.db('ToDoApp');
+//});
+//app.post('/createShoppingList', function (req, res) {
+    //  console.log(req.body.item)
+//  db.collection('items').insertOne({ text: req.body.item }, function () {
+//        res.send('Created! Thank you for submiting a form')
+//    })
+//})
 
 
-    db = client.db('ToDoApp');
-});
+
+
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
 });
-var apiController = require('./node-controllers/apiController');
-apiController(app);
+
 
 app.get('/sts', (req, res, next)=> {
   //  res.sendFile(process.cwd() + '\\client\\src\\img\\sonja.png');

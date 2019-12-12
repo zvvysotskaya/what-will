@@ -6,9 +6,8 @@ import ShoppingListForm from '../../components/shopping-list-form/shopping-list-
 const CreateShoppingListPage = () => (
         <div>
         <h1>Manage the shopping list</h1>
-        <p>kkk</p>
+        
             <div className='container'>
-                <p>Hello</p>
                 <ShoppingListForm />
                 </div>
     </div>)
