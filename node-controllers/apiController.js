@@ -1,4 +1,4 @@
-var express = require('express');
+
 require('dotenv').config();
 const mongodb = require('mongodb');
 let db;
@@ -9,10 +9,14 @@ mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: 
 });
 module.exports = function (app) {
     
-    app.post('/createShoppingList', function (req, res) {
-        //  console.log(req.body.item)
+    app.post('/createShoppingList', function (req, res) {        
         db.collection('items').insertOne({ text: req.body.item }, function () {
             res.send('Created! Thank you for submiting a form')
         })
+    })
+    app.get('/shoppingPage', function (req, res) {
+        db.collection('items').find().toArray(function (err, items) {           
+            res.send(items)
+        })    
     })
 }

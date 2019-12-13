@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
-const mongodb = require('mongodb');
-//const assert = require('assert');
 
 const app = express();
 app.use(helmet());
@@ -30,35 +28,6 @@ if (process.env.NODE_ENV != 'production') {
     })
     require('dotenv').config();
 };
-//let db;
-//let connectionStrings = process.env.REACT_APP_DB_URL
-//mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
-    //assert.equal(null, err);
- //  db = client.db('ToDoApp');
-//});
-//app.post('/createShoppingList', function (req, res) {
-    //  console.log(req.body.item)
-//  db.collection('items').insertOne({ text: req.body.item }, function () {
-//        res.send('Created! Thank you for submiting a form')
-//    })
-//})
-
-
-
-
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
-});
-
-
-app.get('/sts', (req, res, next)=> {
-  //  res.sendFile(process.cwd() + '\\client\\src\\img\\sonja.png');
-    let markup = React.renderToString('<h1>Hello</h1>');  // <-- render the APP here
-    res.send(markup);
- //   res.send('<h1>Hello</h1>');
-})
-
 
 app.all('*', (req, res) => {
     res.send('<h1>The file does not exist!</h1><h1>The file does not exist!</h1><h1>The file does not exist!</h1><h1>The file does not exist!</h1>');

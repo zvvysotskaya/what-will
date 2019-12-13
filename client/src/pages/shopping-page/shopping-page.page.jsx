@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { insertShoppingListStart } from '../../redux/shopping-list/shopping-list.actions';
+import CardShoppingList from '../../components/card-shopping-list/card-shopping-list.component';
 
 const ShoppingPage = () => {
 
-    const [insert, setInsert] = useState({ username:'', todo:'' });
+    const [val, setVal] = useState([]);
 
-      const submit = (e) => {
-        e.preventDefault();
-        var data = {
-            username: insert.username,
-            todo: insert.todo
-        }
-        fetch('/shoppingInsert', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            bodyUsed: true,
-            body: JSON.stringify(data)
-
-        })
-            .then(res => (res.json()))
-            .then(res => (console.log(res)))
+    useEffect(() => {
+        fetch('/shoppingPage')
+        .then(res => (res.json()))
+        .then(res => (setVal(res)))
             .catch((error) => (console.log(error)));
-    }
-    
-
+    }, []
+    )
         return (<div>
             <Link to='/'>Home page</Link>
-            <h1>ShoppingPage</h1>
-            <form onSubmit={submit}>
-                <input type='text' name='username' value={insert.username} onChange={(e) => setInsert({ ...insert, username: e.target.value })} placeholder='username' required />
-                <input type='text' name='todo' value={insert.todo} onChange={(e) => setInsert({ ...insert, todo: e.target.value })} placeholder='todo' required />
-                <input type='submit' value='submit' />
-            </form><br/><br/><br/>
-                        
+            <div className='container'>
+                <h1>ShoppingPage</h1>
+                {
+                    val.map(item => (<CardShoppingList key={item._id} item={item}/>))
+                }
+            </div>
         </ div>
         );
 
