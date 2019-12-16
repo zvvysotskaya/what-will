@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\src\\pages\\shopping-page",
+    "\\node-controllers"
   ],
-  "SelectedNode": "\\server.js",
+  "SelectedNode": "\\node-controllers\\apiController.js",
   "PreviewInSolutionExplorer": false
 }

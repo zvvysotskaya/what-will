@@ -4,13 +4,14 @@ import './card-shopping-list.styles.css'
 
 const CardShoppingList = ({ item }) => {
 
-    return (
-        <div className='container'>
-            <div className='toDoText'>
-                <p>{item._id}</p>
-                <p>{item.text}</p>
-            </div>
-        </div>
+    return ( 
+                <tbody>
+                    <tr>
+                        <td>#</td>
+                        <td>{item.text}</td>
+                        <td>button</td>
+                    </tr>
+                 </tbody>
     )
 }
 export default CardShoppingList;

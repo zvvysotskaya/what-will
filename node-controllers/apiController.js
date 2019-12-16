@@ -11,7 +11,7 @@ module.exports = function (app) {
     
     app.post('/createShoppingList', function (req, res) {        
         db.collection('items').insertOne({ text: req.body.item }, function () {
-            res.send('Created! Thank you for submiting a form')
+            res.redirect('/')
         })
     })
     app.get('/shoppingPage', function (req, res) {

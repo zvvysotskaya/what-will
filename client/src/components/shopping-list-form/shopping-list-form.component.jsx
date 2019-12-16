@@ -1,8 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import './shopping-list-form.styles.css';
 import CustomButton from '../custom-button/custom-button.component';
 
-const ShoppingListForm = () => {
+const ShoppingListForm = ({ history }) => {
     const [val, setVal] = useState({
         item: ''
     })
@@ -19,9 +21,9 @@ const ShoppingListForm = () => {
         })
             .then(res => res.json())
             .then(res => (console.log(res)))
-        .catch(err=>(console.log(err)))
+            .catch(err => (console.log(err)))
+        history.push('/')
     }
-    
     return (
         <div>
             <h2>Form</h2>
@@ -33,9 +35,9 @@ const ShoppingListForm = () => {
                     value={val.item}
                     onChange={e => setVal({ ...val, item: e.target.value })}
                 /><br /><br />
-                <CustomButton blueBtn>Create</CustomButton>
+                <CustomButton blueBtn >Create</CustomButton>
             </form>
         </div>
         )
 }
-export default ShoppingListForm;
+export default withRouter(ShoppingListForm);
