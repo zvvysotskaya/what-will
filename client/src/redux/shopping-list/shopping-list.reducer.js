@@ -1,4 +1,5 @@
 import ShoppingActionTypes from './shopping-list.types';
+import {getShopping} from './shopping-list.utils'
 
 
 const INITIAL_STATE = {
@@ -9,7 +10,8 @@ const shoppingListReducer = (state = INITIAL_STATE, action) => {
     
     switch (action.type) {
         case ShoppingActionTypes.FETCH_SHOPPING_LIST: return {
-            ...state
+            ...state,
+            shoppingList: getShopping(state.shoppingList, action)
         }
         
         default: return state;

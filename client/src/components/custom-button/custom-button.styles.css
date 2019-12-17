@@ -15,7 +15,14 @@
 .redBtn {
     background-color: red;
     color: white;
-    border: red;
+    border: 1px solid red;
+    padding: 10px 40px 10px 40px;
+    font-size: 15px;
+}
+.yellowBtn {
+    background-color: yellow;
+    color: black;
+    border: 1px solid yellow;
     padding: 10px 40px 10px 40px;
     font-size: 15px;
 }

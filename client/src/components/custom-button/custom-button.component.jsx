@@ -1,7 +1,7 @@
 import React from 'react';
 import './custom-button.styles.css';
 
-const CustomButton = ({ children, blueBtn, redBtn,...otherProps }) => {
+const CustomButton = ({ children, blueBtn, yellowBtn, redBtn,...otherProps }) => {
 
     return (
         <div>
@@ -9,6 +9,7 @@ const CustomButton = ({ children, blueBtn, redBtn,...otherProps }) => {
                 className={`
                      ${blueBtn ? 'blueBtn' : ''}
                      ${redBtn ? 'redBtn' : ''}
+                     ${yellowBtn ? 'yellowBtn' : ''}
                         customBtn
                     `}
                 {...otherProps}

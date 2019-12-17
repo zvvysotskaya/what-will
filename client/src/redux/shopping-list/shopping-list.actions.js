@@ -1,8 +1,9 @@
 import ShoppingActionTypes from './shopping-list.types';
 
 
-export const fetchShoppingList = () => ({
-    type: ShoppingActionTypes.FETCH_SHOPPING_LIST
+export const fetchShoppingList = fetch => ({
+    type: ShoppingActionTypes.FETCH_SHOPPING_LIST,
+    payload: fetch
 });
 
 
