@@ -1,7 +1,7 @@
 import React from 'react';
 import './custom-button.styles.css';
 
-const CustomButton = ({ children, blueBtn, yellowBtn, redBtn,...otherProps }) => {
+const CustomButton = ({ children, blueBtn, yellowBtn, editMe, redBtn,...otherProps }) => {
 
     return (
         <div>
