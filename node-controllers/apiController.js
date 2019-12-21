@@ -24,4 +24,9 @@ module.exports = function (app) {
             res.send('success!')
         )
     })
+    app.post('/delete-item', function (req, res) {
+        db.collection('items').deleteOne({ _id: new mongodb.ObjectId(req.body.id) },
+            console.log('deleted!!')
+        )
+    })
 }

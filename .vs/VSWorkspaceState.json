@@ -2,9 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\button-edit",
+    "\\client\\src\\components\\custom-button",
+    "\\client\\src\\components\\shopping-list-form",
+    "\\client\\src\\pages",
     "\\client\\src\\pages\\shopping-page",
-    "\\node-controllers"
+    "\\client\\src\\redux\\signup-login"
   ],
-  "SelectedNode": "\\node-controllers\\apiController.js",
+  "SelectedNode": "\\client\\src\\components\\shopping-list-form\\shopping-list-form.component.jsx",
   "PreviewInSolutionExplorer": false
 }

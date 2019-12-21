@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+
 
 import './shopping-list-form.styles.css';
 import CustomButton from '../custom-button/custom-button.component';
 
-const ShoppingListForm = ({ history }) => {
+const ShoppingListForm = () => {
     const [val, setVal] = useState({
         item: ''
     })
@@ -20,9 +20,9 @@ const ShoppingListForm = ({ history }) => {
             body: JSON.stringify(data)
         })
             .then(res => res.json())
-            .then(res => (console.log(res)))
+            .then(window.location = '/createShoppingListPage')
             .catch(err => (console.log(err)))
-        history.push('/')
+        
     }
     return (
         <div>
@@ -52,4 +52,4 @@ const ShoppingListForm = ({ history }) => {
         </div>
         )
 }
-export default withRouter(ShoppingListForm);
+export default ShoppingListForm;
