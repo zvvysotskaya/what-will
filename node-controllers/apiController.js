@@ -1,4 +1,4 @@
-
+const sanitizeHTML = require('sanitize-html')
 require('dotenv').config();
 const mongodb = require('mongodb');
 let db;
@@ -8,12 +8,15 @@ mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: 
     db = client.db('ToDoApp');
 });
 module.exports = function (app) {
-    
-    app.post('/createShoppingList', function (req, res) {        
-        db.collection('items').insertOne({ text: req.body.item }, function () {
+   
+    app.post('/createShoppingList', function (req, res) {  
+        let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
+
+        db.collection('items').insertOne({ text: safeText }, function () {
             res.redirect('/')
         })
     })
+    
     app.get('/shoppingPage', function (req, res) {
         db.collection('items').find().toArray(function (err, items) {           
             res.send(items)

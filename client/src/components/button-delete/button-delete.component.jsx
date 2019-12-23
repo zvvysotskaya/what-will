@@ -1,6 +1,5 @@
-import React, { useState} from 'react'
-import axios from 'axios';
-import { Redirect }  from 'react-router'
+import React from 'react'
+
 
 
 import CustomButton from '../custom-button/custom-button.component';

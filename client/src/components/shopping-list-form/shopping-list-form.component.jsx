@@ -14,15 +14,20 @@ const ShoppingListForm = () => {
         let data = {
             item: val.item
         }
-        fetch('/createShoppingList', {
-            method: 'POST',
-            headers: { 'Content-type': 'Application/json' },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(window.location = '/createShoppingListPage')
-            .catch(err => (console.log(err)))
-        
+        if (data.item == '') {
+            alert('Enter an item.')
+            return
+        }
+        if (data) {
+            fetch('/createShoppingList', {
+                method: 'POST',
+                headers: { 'Content-type': 'Application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(window.location = '/createShoppingListPage')
+                .catch(err => (console.log(err)))
+        }
     }
     return (
         <div>

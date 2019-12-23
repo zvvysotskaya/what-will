@@ -12,7 +12,8 @@ const CardShoppingListCreate = ({ item, history }) => {
         let userInput = window.confirm("Do you really want to delete this item permanently? ");
         if (userInput) {
             axios.post('/delete-item', { id: e.target.getAttribute('data-id') })
-                .then(history.push('/'))
+                .then(history.push('/createShoppingListPage'))
+                .then(window.location.href = '/createShoppingListPage')
                 .catch(err => (console.log(err)))
         }
     }
