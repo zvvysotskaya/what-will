@@ -2,35 +2,33 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
-const sanitizeHTML = require('sanitize-html')
+require('dotenv').config();
+const bodyParser = require('body-parser')
+const session = require('express-session')
+
+const MongoStore = require('connect-mongo')(session)
+
 
 const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(express.static('client/public'));
 
-
+app.use(session({
+    secret: 'keyboard cat',
+    store: new MongoStore({
+        url: process.env.REACT_APP_DB_URL
+    }),
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24, httpOnly: true }
+}));
 const apiController = require('./node-controllers/apiController')
 apiController(app);
-
-function passwordProtected(req, res, next) {
-    res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
-   // console.log(req.headers.authorization)
-    if (req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA==") {
-       
-        next()
-    } else {
-      // res.send('<h1>Authentication required</h1>')
-          //  res.status(401).send('Authentication required')
-        
-        res.status(401).send("Authentication required")
-    }
-}
-app.use(passwordProtected)
-
-
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));

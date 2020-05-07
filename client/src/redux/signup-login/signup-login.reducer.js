@@ -1,4 +1,4 @@
-import SignupLoginActionTypes from './signup-login.types';
+
 import { signup, login } from './signup-login.utils';
 
 
@@ -10,6 +10,7 @@ const INITIAL_STATE = {
         password: '',
         confirmpassword: ''
     },
+    response:'',
     signin: {
         email: '',
         password: ''
@@ -18,16 +19,19 @@ const INITIAL_STATE = {
 }
 const signupReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SignupLoginActionTypes.FETCH_SIGNUP_SUCCESS: return {
+        case 'FETCH_SIGNUP': return {
             ...state,
-            createAccount: signup(state.createAccount, action.payload)
+            createAccount: action.createAccount
         };
-        case SignupLoginActionTypes.FETCH_SIGNIN_SUCCESS: return {
+        case 'FETCH_RESPONSE': return {
+            ...state,
+            response: action.response
+        }
+        case 'FETCH_SIGNIN': return {
             ...state,
             signin: login(state.signin, action.payload)
         }
         default: return state;
-    }
-    
+    }    
 }
 export default signupReducer;

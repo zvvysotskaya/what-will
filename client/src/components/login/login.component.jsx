@@ -1,36 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
 
-import { fetchSigninSuccess } from '../../redux/signup-login/signup-login.actions';
-
-
+import ImgBlueFlower from '../../img/flower-transparent.png'
+import { fetchSignin } from '../../redux/signup-login/signup-login.actions';
 
 
 
-const Login = ({ fetchSigninSuccess }) => {
+
+
+const Login = ({ fetchSignin}) => {
     const [user, setUser] = useState([])
     const [redir, setRedir] = useState(false);
-    useEffect(() => {
-        fetch('/AllFromUser')
-            .then(res => (res.json()))
-            .then(res => (setUser(res)))
-
-            .catch(error => (console.log(error)));
-
-    }, [])
-    console.log('User.length: ' + user.length)
-    let emailArr = [];
-    let passwordArr = [];
-    for (let i = 0; i < user.length; i++) {
-        let allEmails = Object.values(user)[i].email;
-        let allPasswords = Object.values(user)[i].password;
-        emailArr.push(allEmails);
-        passwordArr.push(allPasswords);
-    }
-    console.log('all emails: ' + emailArr);
-    console.log('all passwords: ' + passwordArr)
-    console.log('redirect is: ' + redir);
     
     const [val, setVal] = useState({
         email: '',
@@ -44,25 +24,14 @@ const Login = ({ fetchSigninSuccess }) => {
             password: val.password
         }
 
-        fetchSigninSuccess(data);
+        fetchSignin(data);
         if (val.email === '' || val.password === '') {
             document.getElementById('validationForm').innerHTML = '<p>Fields connot be empty!</p>';
             document.getElementById('validationForm').style.color = 'magenta';
             return;
         }
-        if (emailArr.indexOf(val.email) < 0 && val.email !== '') {
-            document.getElementById('validationForm').innerHTML = '';
-            alert('Sorry, such email or password does not exist');
-            return;
-        }
         
-        if (emailArr.indexOf(val.email) > -1 && passwordArr.indexOf(val.password) > -1) {
-            setRedir(true);
-            document.getElementById('validationForm').innerHTML = '<p>You are logedin</p>';
-            document.getElementById('validationForm').style.color = 'green';
-            console.log('redirect2 is: ' + redir);
-
-        } else {
+        else {
             setRedir(false)
             
         }
@@ -92,9 +61,24 @@ const Login = ({ fetchSigninSuccess }) => {
     return (
         <div className='container'>
             <div className='row justify-content-center'>
-                <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5'>
+                <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>
+                    <div className='col-md-12 d-flex justify-content-between'>
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                        <div className="blue_flower img-fluid" />
+                    </div>
                     <h3 className='text-center mt-3 mb-3'>Login</h3>
                     <p id='validationForm'></p>
+                    
                     <form onSubmit={handleSubmit} method='POST'>
                         <div className='form-group'>
                             <label>Email:</label>
@@ -119,15 +103,17 @@ const Login = ({ fetchSigninSuccess }) => {
                                 onChange={e => setVal({...val,  password: e.target.value })}                                
                             />
                         </div>
+                        <div className='form-group py-4'>
                         <button type="submit"  className="btn btn-lg btn-danger">Login</button>&nbsp;
                         <button type='submit' onClick={clearVal} className="btn btn-lg btn-danger">Reset</button>
+                        </div >
                     </form>
                 </div>
             </div>
         </div>);
 }
 const mapDispatchToProps = dispatch => ({
-    fetchSigninSuccess: (user) => dispatch(fetchSigninSuccess(user))
+    fetchSignin: (user) => dispatch(fetchSignin(user))
     //  fetchAllFromUserRegister: () => dispatch(fetchAllFromUserRegister())
 });
 

@@ -1,10 +1,9 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffe6e6;
 }
 
 code {
@@ -14,4 +13,16 @@ code {
 
 a {
     text-decoration: none;
+}
+
+.blue_flower {
+    background-image: url(/images/flower-transparent.png);
+    background-repeat: repeat-x;
+    background-size:cover;
+    width: 20px;
+    height: 20px;
+}
+.bg-yellow {
+    background-color: #e6ffcc;
+    
 }

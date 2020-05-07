@@ -4,13 +4,11 @@
     "\\client",
     "\\client\\src",
     "\\client\\src\\components",
-    "\\client\\src\\components\\button-edit",
-    "\\client\\src\\components\\custom-button",
-    "\\client\\src\\components\\shopping-list-form",
-    "\\client\\src\\pages",
-    "\\client\\src\\pages\\shopping-page",
-    "\\client\\src\\redux\\signup-login"
+    "\\client\\src\\components\\login",
+    "\\client\\src\\components\\login-icon",
+    "\\client\\src\\pages\\home-page",
+    "\\node-controllers"
   ],
-  "SelectedNode": "\\client\\src\\components\\shopping-list-form\\shopping-list-form.component.jsx",
+  "SelectedNode": "\\client\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }

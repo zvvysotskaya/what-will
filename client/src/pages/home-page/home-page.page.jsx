@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from '../../components/login/login.component';
+import ImgFlower from '../../img/flower-transparent.png'
 
 const HomePage = () => {
     
@@ -8,7 +9,8 @@ const HomePage = () => {
             <div>
            <Link to='/shoppingPage'>Shopping Page</Link><br/>
            <Link to='/createShoppingListPage'>Create A Shopping List</Link>
-                <h1>Home Page</h1>
+           <h1>Home Page</h1>
+           
                 <Login/>
                
         </div>
