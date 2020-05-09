@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import {withRouter}from'react-router-dom'
 
-import ImgBlueFlower from '../../img/flower-transparent.png'
 import { fetchSignin } from '../../redux/signup-login/signup-login.actions';
 
 
 
 
 
-const Login = ({ fetchSignin}) => {
-    const [user, setUser] = useState([])
+const Login = ({ fetchSignin, history }) => {
+    
     const [redir, setRedir] = useState(false);
     
     const [val, setVal] = useState({
         email: '',
         password: ''
-    });  
-   
+    });
+    useEffect(() => {
+        setTimeout(() => document.getElementById('inp').focus(),90)
+    }, [])
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = {
@@ -37,14 +39,7 @@ const Login = ({ fetchSignin}) => {
         }
         console.log('redirects: ' + redir)
     }
-      //  const handleValidation = () => {
-     //       let validation = true;
-     //       if (val.email === '' || val.password === '') {
-    //            validation = false;
-    //        }
-      //      return validation;
-   // }
-    
+          
     const clearVal = () => { 
         document.getElementById('validationForm').innerHTML = '';        
         setVal({
@@ -52,12 +47,10 @@ const Login = ({ fetchSignin}) => {
             password: ''
         }); 
     }
-    
-     //   if (redir) {
-     //       return <Redirect to='/' />
-    //    }
-        
-    
+    const createAccount = (e) => {
+        e.preventDefault()
+        return history.push('/loginSignupPage')
+    }
     return (
         <div className='container'>
             <div className='row justify-content-center'>
@@ -89,7 +82,7 @@ const Login = ({ fetchSignin}) => {
                                 placeholder='email'
                                 value={val.email}
                                 onChange={e => setVal({ ...val, email: e.target.value })}
-                                
+                                id='inp'
                             />
                         </div>
                         <div className='form-group'>
@@ -103,9 +96,12 @@ const Login = ({ fetchSignin}) => {
                                 onChange={e => setVal({...val,  password: e.target.value })}                                
                             />
                         </div>
-                        <div className='form-group py-4'>
+                        <div className='form-group py-4 text-center'>
                         <button type="submit"  className="btn btn-lg btn-danger">Login</button>&nbsp;
                         <button type='submit' onClick={clearVal} className="btn btn-lg btn-danger">Reset</button>
+
+                            <p className='py-4'>Do not have an account?</p>
+                            <button type='button' onClick={createAccount}>Create Account</button>
                         </div >
                     </form>
                 </div>
@@ -118,4 +114,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(withRouter(Login));
