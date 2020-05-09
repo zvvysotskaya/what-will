@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import './signup.styles.css';
+
 import { fetchSignup} from '../../redux/signup-login/signup-login.actions';
 
 const Signup = ({ fetchSignup, resp }) => {        
@@ -37,6 +37,7 @@ const Signup = ({ fetchSignup, resp }) => {
             password: '',
             confirmpassword: ''
         })
+        
     }
     return (
         <div className='container'>

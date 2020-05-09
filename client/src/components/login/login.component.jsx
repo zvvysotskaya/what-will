@@ -8,7 +8,7 @@ import { fetchSignin } from '../../redux/signup-login/signup-login.actions';
 
 
 
-const Login = ({ fetchSignin, history }) => {
+const Login = ({ fetchSignin, history, resp }) => {
     
     const [redir, setRedir] = useState(false);
     
@@ -49,7 +49,7 @@ const Login = ({ fetchSignin, history }) => {
     }
     const createAccount = (e) => {
         e.preventDefault()
-        return history.push('/loginSignupPage')
+        return history.push('/signupPage')
     }
     return (
         <div className='container'>
@@ -71,8 +71,10 @@ const Login = ({ fetchSignin, history }) => {
                     </div>
                     <h3 className='text-center mt-3 mb-3'>Login</h3>
                     <p id='validationForm'></p>
-                    
+                    {resp}
                     <form onSubmit={handleSubmit} method='POST'>
+
+                        
                         <div className='form-group'>
                             <label>Email:</label>
                             <input
@@ -108,10 +110,13 @@ const Login = ({ fetchSignin, history }) => {
             </div>
         </div>);
 }
+const mapPropsToState = state => ({
+    resp: state.account.responseSignin
+})
 const mapDispatchToProps = dispatch => ({
     fetchSignin: (user) => dispatch(fetchSignin(user))
     //  fetchAllFromUserRegister: () => dispatch(fetchAllFromUserRegister())
 });
 
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+export default connect(mapPropsToState, mapDispatchToProps)(withRouter(Login));

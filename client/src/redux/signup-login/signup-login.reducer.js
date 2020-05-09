@@ -1,7 +1,4 @@
 
-import { signup, login } from './signup-login.utils';
-
-
 const INITIAL_STATE = {
     createAccount: {
         prefix: '',
@@ -10,7 +7,8 @@ const INITIAL_STATE = {
         password: '',
         confirmpassword: ''
     },
-    response:'',
+    response: '',
+    responseSignin: '',
     signin: {
         email: '',
         password: ''
@@ -29,7 +27,11 @@ const signupReducer = (state = INITIAL_STATE, action) => {
         }
         case 'FETCH_SIGNIN': return {
             ...state,
-            signin: login(state.signin, action.payload)
+            signin: action.signin
+        }
+        case 'FETCH_RESPONSE_SIGNIN': return {
+            ...state,
+            responseSignin: action.responseSignin
         }
         default: return state;
     }    

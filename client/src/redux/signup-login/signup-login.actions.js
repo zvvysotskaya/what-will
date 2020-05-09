@@ -17,9 +17,17 @@ export const fetchSignup = (payload) => {
     
 };
 
-export const fetchSignin = user => ({
-    type: 'FETCH_SIGNIN',
-    payload: user,
-    
-});
+export const fetchSignin = payload => {
+    return dispatch => {
+        return fetch('/login', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            bodyUsed: true,
+            body: JSON.stringify(payload)
+        })
+            .then(res => res.text())
+            .then(res => dispatch({ type: 'FETCH_RESPONSE_SIGNIN', responseSignin: res }))
+            .catch(er => console.log(er))
+    }    
+};
 

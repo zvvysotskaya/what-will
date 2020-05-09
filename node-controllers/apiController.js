@@ -1,6 +1,8 @@
 const sanitizeHTML = require('sanitize-html')
 require('dotenv').config();
+const bcrypt = require('bcryptjs');
 const mongodb = require('mongodb');
+const ObjectID = require('mongodb').ObjectID;
 let db;
 let connectionStrings = process.env.REACT_APP_DB_URL
 mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
@@ -20,14 +22,14 @@ module.exports = function (app) {
                     db.collection('users').findOne({ username: safeUsername })
                         .then(dbResp => {
                             if (dbResp) {
-                                res.send('Such user name already exists. Please, choose other user name.')
+                                res.send('Such user name already exists. Please, choose another username.')
                             }
                             else {
-                                db.collection('users').insertOne({ username: safeUsername, email: req.body.email })
+                                let salt = bcrypt.genSaltSync(10)
+                                let password = bcrypt.hashSync(req.body.password, salt);
+                                db.collection('users').insertOne({ username: safeUsername, email: req.body.email,password: password})
                                     .then(rr => {
-                                        res.send('Your account created successfully.')
-                                        console.log('Your account created successfully.')
-                                        
+                                        res.send('Your account created successfully.')                                       
                                     })
                                     .catch(er => console.log(er))
                             }
@@ -36,7 +38,48 @@ module.exports = function (app) {
                 }
             }).catch(er=>console.log(er))
     })
-   
+    app.post('/login', function (req, res) {
+        if (req.body.password == '') {
+            res.send('Password cannot be empty')
+            return
+        }
+
+        if (req.body.email == '') {
+            res.send('Email cannot be empty')
+            return
+        }
+        let password = req.body.password
+        let email = req.body.email     
+        if (password && email != '') {
+            db.collection('users').find({ email: { $eq: req.body.email } })
+                .toArray()
+                .then((result) => {
+                    if (result[0] == null) {
+                        res.send('Invalid pasword / email!')
+                        return
+                    }
+                    if (result[0] != null) {
+                        if (bcrypt.compareSync(password, result[0].password)) {
+                            req.session.user = {
+                                email: req.body.email,                                
+                                _id: ObjectID(result[0]._id),
+                                username: result[0].username
+                            }
+                            res.send('Congrats!')
+                        } else {
+                            res.send('Invalid pasword / email!')
+                            return
+                        }
+                    } else {
+                        res.send('Invalid pasword / email!')
+                        return
+                    }
+                })
+                .catch(er => console.log(er))
+        }
+
+    })
+
     app.post('/createShoppingList', function (req, res) {  
         let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
 
