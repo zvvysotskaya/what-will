@@ -43,7 +43,6 @@ module.exports = function (app) {
             res.send('Password cannot be empty')
             return
         }
-
         if (req.body.email == '') {
             res.send('Email cannot be empty')
             return
@@ -78,6 +77,18 @@ module.exports = function (app) {
                 .catch(er => console.log(er))
         }
 
+    })
+
+    app.get('/isUserLoggedin', function (req, res) {
+        if (req.session.user) {
+            res.send('a user is loggedin.')
+        }        
+    })
+
+    app.get('/logout', function (req, res) {
+        req.session.destroy(function () {
+            res.send('You are now loggedout.')
+        });
     })
 
     app.post('/createShoppingList', function (req, res) {  

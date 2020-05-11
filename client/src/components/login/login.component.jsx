@@ -1,60 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import {withRouter}from'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 import { fetchSignin } from '../../redux/signup-login/signup-login.actions';
 
-
-
-
-
-const Login = ({ fetchSignin, history, resp }) => {
-    
-    const [redir, setRedir] = useState(false);
+const Login = ({ fetchSignin, history, resp }) => {  
     
     const [val, setVal] = useState({
         email: '',
         password: ''
     });
+
     useEffect(() => {
-        setTimeout(() => document.getElementById('inp').focus(),90)
+        setTimeout(() => {
+            try {
+                document.getElementById('inp').focus()
+            } catch (er) {
+                console.log(er)
+            }           
+        }, 90)
     }, [])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = {
             email: val.email,
             password: val.password
         }
-
         fetchSignin(data);
-        if (val.email === '' || val.password === '') {
-            document.getElementById('validationForm').innerHTML = '<p>Fields connot be empty!</p>';
-            document.getElementById('validationForm').style.color = 'magenta';
-            return;
-        }
-        
-        else {
-            setRedir(false)
-            
-        }
-        console.log('redirects: ' + redir)
+        setTimeout(() => window.location='/shoppingPage', 1500)
     }
-          
-    const clearVal = () => { 
-        document.getElementById('validationForm').innerHTML = '';        
+    
+    const clearVal = () => {              
         setVal({
             email: '',
             password: ''
         }); 
     }
+
     const createAccount = (e) => {
         e.preventDefault()
         return history.push('/signupPage')
     }
+
     return (
         <div className='container'>
-            <div className='row justify-content-center'>
-                <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>
+            <div className='row justify-content-center'>                
+                <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>                    
+                    <h3 className='text-center'>Login</h3>
                     <div className='col-md-12 d-flex justify-content-between'>
                         <div className="blue_flower img-fluid" />
                         <div className="blue_flower img-fluid" />
@@ -68,13 +61,16 @@ const Login = ({ fetchSignin, history, resp }) => {
                         <div className="blue_flower img-fluid" />
                         <div className="blue_flower img-fluid" />
                         <div className="blue_flower img-fluid" />
+                    </div>                    
+                    <div className={`alert text-center 
+                                    ${resp === 'Password cannot be empty' || resp === 'Email cannot be empty' ||
+                                    resp === 'Invalid pasword / email!' ? 'alert-danger' : ''}
+                                    ${resp === 'Congrats!' ? 'alert-info': ''}
+                                    `}
+                    >
+                        {resp}
                     </div>
-                    <h3 className='text-center mt-3 mb-3'>Login</h3>
-                    <p id='validationForm'></p>
-                    {resp}
-                    <form onSubmit={handleSubmit} method='POST'>
-
-                        
+                    <form onSubmit={handleSubmit} method='POST'>                        
                         <div className='form-group'>
                             <label>Email:</label>
                             <input
@@ -101,7 +97,6 @@ const Login = ({ fetchSignin, history, resp }) => {
                         <div className='form-group py-4 text-center'>
                         <button type="submit"  className="btn btn-lg btn-danger">Login</button>&nbsp;
                         <button type='submit' onClick={clearVal} className="btn btn-lg btn-danger">Reset</button>
-
                             <p className='py-4'>Do not have an account?</p>
                             <button type='button' onClick={createAccount}>Create Account</button>
                         </div >
@@ -114,9 +109,7 @@ const mapPropsToState = state => ({
     resp: state.account.responseSignin
 })
 const mapDispatchToProps = dispatch => ({
-    fetchSignin: (user) => dispatch(fetchSignin(user))
-    //  fetchAllFromUserRegister: () => dispatch(fetchAllFromUserRegister())
+    fetchSignin: (user) => dispatch(fetchSignin(user))    
 });
-
 
 export default connect(mapPropsToState, mapDispatchToProps)(withRouter(Login));

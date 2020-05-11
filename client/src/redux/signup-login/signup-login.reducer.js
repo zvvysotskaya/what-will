@@ -13,7 +13,8 @@ const INITIAL_STATE = {
         email: '',
         password: ''
     },
-    allUsers: []
+    allUsers: [],
+    responseIsUserLoggedin: ''
 }
 const signupReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -33,6 +34,12 @@ const signupReducer = (state = INITIAL_STATE, action) => {
             ...state,
             responseSignin: action.responseSignin
         }
+        case 'FETCH_IS_USER_LOGGEDIN': return {
+            ...state,
+            responseIsUserLoggedin: action.responseIsUserLoggedin
+        }
+            
+            
         default: return state;
     }    
 }

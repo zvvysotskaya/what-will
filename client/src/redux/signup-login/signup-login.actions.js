@@ -31,3 +31,11 @@ export const fetchSignin = payload => {
     }    
 };
 
+export const fetchUserLoggedin = () => {
+    return dispatch => {
+        return fetch('/isUserLoggedin')
+            .then(res => res.text())
+            .then(res => dispatch({ type: 'FETCH_IS_USER_LOGGEDIN', responseIsUserLoggedin: res }))
+            .catch(er => console.log(er))
+    }
+}

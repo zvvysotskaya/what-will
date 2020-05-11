@@ -1,0 +1,22 @@
+.logout_icon:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.logout_icon {
+    transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+    opacity: 1;
+}
+
+.logout_span {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+    .logout_span:hover {
+        color: #ffffff;
+        text-decoration: none;
+        text-decoration-style: none;
+        text-decoration-line: none;
+    }
