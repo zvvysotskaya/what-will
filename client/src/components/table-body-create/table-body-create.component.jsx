@@ -4,7 +4,7 @@ import ButtonDelete from '../button-delete/button-delete.component';
 import ButtonEdit from '../button-edit/button-edit.component';
 import { deleteItem } from '../../redux/shopping-list/shopping-list.actions';
 
-const TableBodyCreate = ({ item, deleteItem, deleteResponse }) => {
+const TableBodyCreate = ({ item, index,deleteItem, deleteResponse }) => {
     function cl(e) {
         e.preventDefault()
         let userInput = window.confirm("Do you really want to delete this item permanently? ");
@@ -25,7 +25,7 @@ const TableBodyCreate = ({ item, deleteItem, deleteResponse }) => {
     return (
         <tbody className='bg-white'>
             <tr>
-                <td >#</td>
+                <td >{index + 1}</td>
                 <td>{item.text}</td>
                 <td className='d-md-flex'>
                     <ButtonEdit data-id={item._id} >Edit</ButtonEdit>&nbsp;&nbsp;

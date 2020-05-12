@@ -10,14 +10,14 @@ const DisplayShoppingList = ({ shoppingList, display }) => {
         display()
     }, [display]
     )
-    console.log("SHOP**: " + shoppingList[0])
+    
     return (
         <div className='container'>            
             <div className='row'>
                 <div className='col-12 my-2'>
-                    <table className='table table-bordered table-responsive-sm table-responsive-xs'>
+                    <table className='table table-bordered table-responsive-sm table-responsive-xs' id='tb'>
                         <TableThead />
-                        {shoppingList[0] == null ? null: shoppingList.map(item => <TableBodyDisplay key={item._id} item={item} />)}
+                        {shoppingList[0] == null ? null : shoppingList.map((item, index) => <TableBodyDisplay key={item._id} item={item} index={index} />)}
                     </table>
                 </div>
             </div>

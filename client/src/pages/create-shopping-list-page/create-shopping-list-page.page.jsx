@@ -22,7 +22,7 @@ const CreateShoppingListPage = ({ shoppingList, display }) => {
                         <table className='table table-bordered table-responsive-sm table-responsive-xs'>
                             <TableThead />
                             {
-                                    shoppingList.map(item => (<TableBodyCreate key={item._id} item={item}/>))
+                                shoppingList.map((item, index) => (<TableBodyCreate key={item._id} item={item} index={index}/>))
                             }
                     </table>
                     </div>

@@ -95,7 +95,7 @@ module.exports = function (app) {
         let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
 
         db.collection('items').insertOne({ text: safeText, author: ObjectID(req.session.user._id), isChecked: false }, function () {
-            res.redirect('/')
+            res.send('created')
         })
     })
 

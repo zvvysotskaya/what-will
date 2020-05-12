@@ -1,25 +1,34 @@
 
 
 const INITIAL_STATE = {
-    responseOnCreateShoppingList: null,
-    responseOnCreateShoppingListFailure: null,
-    responseOnDisplayShoppingList: [],
-    responseOnDisplayShoppingListFailure: null,
-    checkedId: null,
-    checkedIdFailure: null,
-    deleteI: null,
-    deleteIFailure: null
+    loading: false,
+    error: null,
+    responseOnCreateShoppingList: null,   
+    responseOnDisplayShoppingList: [],    
+    checkedId: null,    
+    deleteI: null    
 };
 const shoppingListReducer = (state = INITIAL_STATE, action) => {
     
     switch (action.type) {
-        case 'FETCH_RESPONS_CREATE_SHOPPING_LIST': return {
+        case 'FETCH_RESPONSE_CREATE_SHOPPING_LIST_START': return {
             ...state,
+            loading: true,
+            error: null
+        }
+        case 'FETCH_RESPONSE_CREATE_SHOPPING_LIST': return {
+            ...state,
+           loading: false,
             responseOnCreateShoppingList: action.responseOnCreateShoppingList
         }
-        case 'FETCH_RESPONS_CREATE_SHOPPING_LIST_FAILURE': return {
+        case 'FETCH_RESPONSE_CREATE_SHOPPING_LIST_FAILURE': return {
             ...state,
-            responseOnCreateShoppingListFailure: action.responseOnCreateShoppingListFailure
+            error: action.error
+        }
+        case 'FETCH_RESPONSE_DISPLAY_SHOPPING_LIST_START': return {
+            ...state,
+            loading:true,
+            error:null
         }
         case 'FETCH_RESPONSE_DISPLAY_SHOPPING_LIST': return {
             ...state,
@@ -27,7 +36,7 @@ const shoppingListReducer = (state = INITIAL_STATE, action) => {
         }
         case 'FETCH_RESPONSE_DISPLAY_SHOPPING_LIST_FAILURE': return {
             ...state,
-            responseOnDisplayShoppingListFailure: action.responseOnDisplayShoppingListFailure
+            error: action.error
         }
         case 'EDIT_CHECKBOX': return {
             ...state,
@@ -35,7 +44,7 @@ const shoppingListReducer = (state = INITIAL_STATE, action) => {
         }
         case 'EDIT_CHECKBOX_FAILURE': return {
             ...state,
-            checkedIdFailure: action.checkedIdFailure
+            error: action.error
         }
         case 'DELETE_ITEM': return {
             ...state,
@@ -43,7 +52,7 @@ const shoppingListReducer = (state = INITIAL_STATE, action) => {
         }
         case 'DELETE_ITEM_FAILURE': return {
             ...state,
-            deleteIFailure: action.deleteIFailure
+            error: action.error
         }
         default: return state;
     }
