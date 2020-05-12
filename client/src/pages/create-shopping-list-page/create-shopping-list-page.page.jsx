@@ -7,6 +7,7 @@ import TableBodyCreate from '../../components/table-body-create/table-body-creat
 import TableThead from '../../components/table-thead/table-thead.component';
 import { displayShoppingList } from '../../redux/shopping-list/shopping-list.actions';
 
+
 const CreateShoppingListPage = ({ shoppingList, display }) => {
     useEffect(() => {
         display()
@@ -14,15 +15,17 @@ const CreateShoppingListPage = ({ shoppingList, display }) => {
     return (
         <div>
             <div className='container'>
+                <div className='row'>
                 
-                <ShoppingListForm />
-                <div className='text-center'>
-                    <table className='table table-striped table-bordered table-responsive-sm'>
-                        <TableThead />
-                    {
-                            shoppingList.map(item => (<TableBodyCreate key={item._id} item={item}/>))
-                    }
+                    <div className='col-12 text-center'>
+                        <ShoppingListForm />
+                        <table className='table table-bordered table-responsive-sm table-responsive-xs'>
+                            <TableThead />
+                            {
+                                    shoppingList.map(item => (<TableBodyCreate key={item._id} item={item}/>))
+                            }
                     </table>
+                    </div>
                 </div>
             </div>
         </div>)

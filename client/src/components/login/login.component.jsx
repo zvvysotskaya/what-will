@@ -74,7 +74,7 @@ const Login = ({ fetchSignin, history, resp }) => {
                         <div className='form-group'>
                             <label>Email:</label>
                             <input
-                                type='text'
+                                type='email'
                                 className="form-control"
                                 name='email'
                                 placeholder='email'
@@ -86,7 +86,7 @@ const Login = ({ fetchSignin, history, resp }) => {
                         <div className='form-group'>
                             <label>Password:</label>
                             <input
-                                type='text'
+                                type='password'
                                 className="form-control"
                                 name='password'
                                 placeholder='Enter Your Password'

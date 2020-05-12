@@ -8,15 +8,16 @@ import { displayShoppingList } from '../../redux/shopping-list/shopping-list.act
 const DisplayShoppingList = ({ shoppingList, display }) => {
     useEffect(() => {
         display()
-    }, [display])
-       
+    }, [display]
+    )
+    console.log("SHOP**: " + shoppingList[0])
     return (
         <div className='container'>            
             <div className='row'>
-                <div className='col-12'>
-                    <table className='table table-bordered table-responsive-sm'>
+                <div className='col-12 my-2'>
+                    <table className='table table-bordered table-responsive-sm table-responsive-xs'>
                         <TableThead />
-                        {shoppingList.map(item => <TableBodyDisplay key={item._id} item={item} />)}
+                        {shoppingList[0] == null ? null: shoppingList.map(item => <TableBodyDisplay key={item._id} item={item} />)}
                     </table>
                 </div>
             </div>

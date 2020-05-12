@@ -24,6 +24,9 @@ const ShoppingListForm = ({ respIsLoggedin, createShoppingList }) => {
             createShoppingList(data)
             setTimeout(() => window.location = '/createShoppingListPage', 100)
         }
+        if (respIsLoggedin === '' || respIsLoggedin === null) {
+            window.location = '/'
+        }
     }
     
     return (
