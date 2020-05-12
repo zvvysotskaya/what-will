@@ -94,11 +94,42 @@ module.exports = function (app) {
     app.post('/createShoppingList', function (req, res) {  
         let safeText = sanitizeHTML(req.body.item, { allowedTags: [], allowedAttributes: {} })
 
-        db.collection('items').insertOne({ text: safeText }, function () {
+        db.collection('items').insertOne({ text: safeText, author: ObjectID(req.session.user._id), isChecked: false }, function () {
             res.redirect('/')
         })
     })
-    
+
+    app.get('/displayShoppingList', function (req, res) {
+        if (req.session.user) {
+            db.collection('items').find({ author: { $eq: ObjectID(req.session.user._id) } })
+                .toArray(function (err, result) {
+                    if (err) throw err;
+                    res.send(result)
+                })
+        } else {
+            res.send('You are not loggedin.')
+        }
+    })
+
+    app.post('/update-checkbox', function (req, res) {
+        console.log('id: '+req.body.id)
+        db.collection('items').find({ _id: { $eq: ObjectID(req.body.id) } })
+            .toArray(function (err, result) {
+                if (err) throw err
+                console.log((result[0].isChecked))                
+                if (result[0].isChecked === true) {
+                    db.collection('items').findOneAndUpdate({ _id: new mongodb.ObjectId(req.body.id) }, { $set: { isChecked: false } },
+                        // res.send('success!')
+                    ).catch(er => console.log(er))
+                }
+                if (result[0].isChecked === false || result[0].isChecked === '' || result[0].isChecked ==null) {
+                    db.collection('items').findOneAndUpdate({ _id: new mongodb.ObjectId(req.body.id) }, { $set: { isChecked: true } },
+                        // res.send('success!')
+                    ).catch(er => console.log(er))
+                }
+                
+            })
+    })
     app.get('/shoppingPage', function (req, res) {
         db.collection('items').find().toArray(function (err, items) {           
             res.send(items)
@@ -111,7 +142,7 @@ module.exports = function (app) {
     })
     app.post('/delete-item', function (req, res) {
         db.collection('items').deleteOne({ _id: new mongodb.ObjectId(req.body.id) },
-            console.log('deleted!!')
+            res.send('deleted!!!')            
         )
     })
 }

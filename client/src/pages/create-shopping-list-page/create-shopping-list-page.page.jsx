@@ -1,40 +1,36 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import './create-shopping-list-page.styles.css';
 import ShoppingListForm from '../../components/shopping-list-form/shopping-list-form.component';
-import CardShoppingListCreate from '../../components/card-shopping-list-create/card-shopping-list-create.component'; 
+import TableBodyCreate from '../../components/table-body-create/table-body-create.component';
+import TableThead from '../../components/table-thead/table-thead.component';
+import { displayShoppingList } from '../../redux/shopping-list/shopping-list.actions';
 
-const CreateShoppingListPage = () => {
-    const [val, setVal] = useState([]);
-
+const CreateShoppingListPage = ({ shoppingList, display }) => {
     useEffect(() => {
-        fetch('/shoppingPage')
-            .then(res => (res.json()))
-            .then(res => (setVal(res)))
-            .catch((error) => (console.log(error)));
-    }, []
-    )
+        display()
+    }, [display])
     return (
         <div>
             <div className='container'>
-                <h1 className='text-center py-4'>Manage the shopping list</h1>
+                
                 <ShoppingListForm />
                 <div className='text-center'>
-                    <table className='table table-striped table-bordered table-responsive'>
-                        <thead >
-                            <tr>
-                                <th style={{ width: 8 + '%' }}>##</th>
-                                <th style={{ width: 70 + '%' }}>Items</th>
-                                <th style={{ width: 20 + '%' }}></th>
-                            </tr>
-                        </thead>
+                    <table className='table table-striped table-bordered table-responsive-sm'>
+                        <TableThead />
                     {
-                        val.map(item => (<CardShoppingListCreate key={item._id} item={item}/>))
+                            shoppingList.map(item => (<TableBodyCreate key={item._id} item={item}/>))
                     }
                     </table>
                 </div>
             </div>
         </div>)
 }
-
-export default CreateShoppingListPage;
+const mapStateToProps = state => ({
+    shoppingList: state.shop.responseOnDisplayShoppingList
+})
+const mapDispatchToProps = dispatch => ({
+    display: () => dispatch(displayShoppingList())
+})
+export default connect(mapStateToProps, mapDispatchToProps )(CreateShoppingListPage);

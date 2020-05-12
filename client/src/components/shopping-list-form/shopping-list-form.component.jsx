@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
 
 import './shopping-list-form.styles.css';
 import CustomButton from '../custom-button/custom-button.component';
+import { createShoppingList } from '../../redux/shopping-list/shopping-list.actions';
 
-const ShoppingListForm = () => {
+const ShoppingListForm = ({ respIsLoggedin, createShoppingList }) => {
+
     const [val, setVal] = useState({
         item: ''
     })
-    const handleSubmit = (e) => {
-        
+
+    const handleSubmit = (e) => {        
         e.preventDefault()
         let data = {
             item: val.item
         }
-        if (data.item == '') {
+        if (data.item === '') {
             alert('Enter an item.')
             return
         }
-        if (data) {
-            fetch('/createShoppingList', {
-                method: 'POST',
-                headers: { 'Content-type': 'Application/json' },
-                body: JSON.stringify(data)
-            })
-                .then(res => res.json())
-                .then(window.location = '/createShoppingListPage')
-                .catch(err => (console.log(err)))
+        if (data && respIsLoggedin === 'a user is loggedin.') {
+            createShoppingList(data)
+            setTimeout(() => window.location = '/createShoppingListPage', 100)
         }
     }
+    
     return (
         <div>
             <div className='container'>
@@ -43,7 +40,8 @@ const ShoppingListForm = () => {
                                         type='text'
                                         name="item"
                                         value={val.item}
-                                        onChange={e => setVal({ ...val, item: e.target.value })}
+                                    onChange={e => setVal({ ...val, item: e.target.value })}
+                                    placeholder='Add an item here...'
                                     />
                                 </div>
                                     <br />
@@ -57,4 +55,13 @@ const ShoppingListForm = () => {
         </div>
         )
 }
-export default ShoppingListForm;
+
+const mapPropsToState = state => ({
+    respIsLoggedin: state.account.responseIsUserLoggedin
+})
+
+const mapDispatchToProps = dispatch=>({
+    createShoppingList: (a) => dispatch(createShoppingList(a))
+})
+
+export default connect(mapPropsToState,mapDispatchToProps)(ShoppingListForm);

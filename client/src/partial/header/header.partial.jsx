@@ -6,15 +6,16 @@ import './header.styles.css';
 import HomeIcon from '../../components/home-icon/home-icon.component';
 import LoginIcon from '../../components/login-icon/login-icon.component';
 import LogoutIcon from '../../components/logout-icon/logout-icon.component';
+import Navigation from '../../components/navigation/navigation.component'
 import {fetchUserLoggedin}from '../../redux/signup-login/signup-login.actions'
 
 const Header = ({ isLoggedin, respIsLoggedin}) => {
     useEffect(() => {
         isLoggedin()
-    }, [])
+    }, [isLoggedin])
     const displayIcons = () => {
         if (respIsLoggedin === 'a user is loggedin.') {
-            return <div className='logout'><LogoutIcon  /></div>
+            return <div className='d-flex'><Navigation />&nbsp; &nbsp; &nbsp;<div className='logout'><LogoutIcon /></div></div>
         } else {
             return (<Link to='/loginPage' className='login'><LoginIcon /></Link>)
         }

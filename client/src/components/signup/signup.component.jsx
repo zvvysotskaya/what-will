@@ -27,8 +27,17 @@ const Signup = ({ fetchSignup, resp }) => {
             alert('Password does not match!');
             return;
         }
-        fetchSignup(data)               
+        fetchSignup(data)
+        
     }
+    (function () {        
+        setTimeout(() => {
+            if (resp === 'Your account created successfully.') {
+                return window.location = '/'
+            }
+        }, 1000)
+    })()
+    
     const click = (e) => {
         e.preventDefault()
         setVal({
@@ -44,7 +53,12 @@ const Signup = ({ fetchSignup, resp }) => {
             <div className='row justify-content-center'>
                 <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>
                     <h3 className='text-center mt-3 mb-3'>Create an Account</h3>
-                    {resp}
+                    <div className={`alert text-center ${resp === 'Such email already exists' || resp === 'Such user name already exists. Please, choose another username.' ? 'alert-danger' : ''}
+                                                        ${resp === 'Your account created successfully.' ? 'alert-info' : ''}
+                                    `}
+                    >
+                        {resp}
+                    </div>
                     <form onSubmit={submit} method="POST">                        
                         <div className='form-group' >
                             <label>User Name:</label>

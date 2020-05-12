@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ReactComponent as UsersIcon } from '../../img/user.svg';
 import './logout-icon.styles.css';
