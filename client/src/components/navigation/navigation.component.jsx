@@ -1,16 +1,17 @@
 import React from 'react';
+import {Link}from'react-router-dom'
 
 import { ReactComponent as NavigationIcon } from '../../img/paragraph-justify.svg';
 
 const Navigation = () => (
     <div>
         <div className="dropdown show">
-            <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <Link className="btn btn-secondary dropdown-toggle" to="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <NavigationIcon />
-            </a>
+            </Link>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a className="dropdown-item" href={`/shoppingPage`}>Display Shopping List</a>
-                <a className="dropdown-item" href="/createShoppingListPage">Create Shopping List</a>
+                <Link className="dropdown-item" to={`/shoppingPage`}>Display Shopping List</Link>
+                <Link className="dropdown-item" to="/createShoppingListPage">Create Shopping List</Link>
             </div>
         </div>
     </div>
