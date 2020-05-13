@@ -1,3 +1,4 @@
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -5,7 +6,7 @@ const path = require('path');
 require('dotenv').config();
 const bodyParser = require('body-parser')
 const session = require('express-session')
-
+const compression = require('compression')
 const MongoStore = require('connect-mongo')(session)
 
 
@@ -15,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
-
-app.use(express.static('client/public'));
+app.use(sslRedirect());
+app.use(express.static('client/build'));
 
 app.use(session({
     secret: 'keyboard cat',
@@ -29,7 +30,7 @@ app.use(session({
 }));
 const apiController = require('./node-controllers/apiController')
 apiController(app);
-
+app.use(compression())
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
     app.get('*', function (req, res) {
