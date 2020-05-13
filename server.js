@@ -32,10 +32,16 @@ const apiController = require('./node-controllers/apiController')
 apiController(app);
 app.use(compression())
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    });
+    
+    //set static folder
+
+    app.use(express.static('client/build'));
+
+    app.get('*', function (req, res, next) {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    })
+
+
 }
 if (process.env.NODE_ENV != 'production') {
     app.use(express.static(path.join(__dirname, 'client/public')));  
