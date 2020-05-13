@@ -33,6 +33,9 @@
     "heroku-ssl-redirect": "^0.0.4",
     "mongodb": "^3.3.5",
     "react-confirm": "^0.1.18",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sanitize-html": "^1.20.1"
   }
