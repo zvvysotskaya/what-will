@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(sslRedirect());
 app.use(express.static('client/build'));
-
+app.use(compression())
 app.use(session({
     secret: 'keyboard cat',
     store: new MongoStore({
@@ -30,7 +30,7 @@ app.use(session({
 }));
 const apiController = require('./node-controllers/apiController')
 apiController(app);
-app.use(compression())
+
 if (process.env.NODE_ENV === 'production') {
     
     //set static folder
