@@ -76,7 +76,7 @@ const Signup = ({ fetchSignup, resp }) => {
                         <div className='form-group'>
                             <label>Email:</label>
                             <input
-                                type='text'
+                                type='email'
                                 className="form-control email"
                                 name='email'
                                 placeholder='Email'
