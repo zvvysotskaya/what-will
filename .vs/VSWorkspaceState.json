@@ -3,12 +3,8 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\components",
-    "\\client\\src\\components\\login",
-    "\\client\\src\\components\\login-icon",
-    "\\client\\src\\pages\\home-page",
     "\\node-controllers"
   ],
-  "SelectedNode": "\\client\\src\\index.js",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }
