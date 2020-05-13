@@ -7,7 +7,7 @@ let db;
 let connectionStrings = process.env.REACT_APP_DB_URL || process.env.MONGODB_URI
 mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     //assert.equal(null, err);
-    db = client.db('ToDoApp');
+    db = client.db('heroku_dz3lp7rl')//('ToDoApp');
 });
 module.exports = function (app) {
     app.post('/create-user', function (req, res) {
