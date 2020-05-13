@@ -19,6 +19,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(sslRedirect());
 app.use(express.static('client/build'));
 app.use(compression())
+var forceSsl = function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    return next();
+};
 app.use(session({
     secret: 'keyboard cat',
     store: new MongoStore({
@@ -28,11 +34,12 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24, httpOnly: true }
 }));
+
 const apiController = require('./node-controllers/apiController')
 apiController(app);
 
 if (process.env.NODE_ENV === 'production') {
-    
+    app.use(forceSsl)
     //set static folder
 
     app.use(express.static('client/build'));
