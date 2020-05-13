@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongodb = require('mongodb');
 const ObjectID = require('mongodb').ObjectID;
 let db;
-let connectionStrings = process.env.REACT_APP_DB_URL
+let connectionStrings = process.env.REACT_APP_DB_URL || process.env.MONGODB_URI
 mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     //assert.equal(null, err);
     db = client.db('ToDoApp');
