@@ -9,8 +9,8 @@ Backend: Node.js/Express, mongodb
 ## **Getting started**
 
 First, clone or download repo
-*  ` git clone https://github.com/zvvysotskaya/with-me.git `
-*  ` cd with-me `
+*  ` git clone https://github.com/zvvysotskaya/what-will.git `
+*  ` cd what-will `
 *  ` npm install`
 *  ` cd client `
 *  ` npm install `
