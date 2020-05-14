@@ -65,3 +65,7 @@ app.all('*', (req, res) => {
 
 const port = process.env.PORT || 5000;
 app.listen(port, error => { if (error) { throw error; } else { console.log('server running on port ' + port) } });
+
+app.get('./service-worker.js', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'))
+})
