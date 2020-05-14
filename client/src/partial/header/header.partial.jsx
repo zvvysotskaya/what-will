@@ -6,8 +6,8 @@ import './header.styles.css';
 import HomeIcon from '../../components/home-icon/home-icon.component';
 import LoginIcon from '../../components/login-icon/login-icon.component';
 import LogoutIcon from '../../components/logout-icon/logout-icon.component';
-import Navigation from '../../components/navigation/navigation.component'
-import {fetchUserLoggedin}from '../../redux/signup-login/signup-login.actions'
+import Navigation from '../../components/navigation/navigation.component';
+import { fetchUserLoggedin } from '../../redux/signup-login/signup-login.actions';
 
 const Header = ({ isLoggedin, respIsLoggedin}) => {
     useEffect(() => {
@@ -19,7 +19,8 @@ const Header = ({ isLoggedin, respIsLoggedin}) => {
         } else {
             return (<Link to='/loginPage' className='login'><LoginIcon /></Link>)
         }
-    }   
+    }  
+    
     return (
         <div className='header mt-0'>
             <div className='container'>
@@ -37,10 +38,12 @@ const Header = ({ isLoggedin, respIsLoggedin}) => {
         </ div>
     );
 }
+
 const mapPropsToState = state => ({
     respIsLoggedin: state.account.responseIsUserLoggedin
 })
 const mapDispatchToProps = dispatch => ({
     isLoggedin: () => dispatch(fetchUserLoggedin())
 })
+
 export default connect(mapPropsToState, mapDispatchToProps)(Header);

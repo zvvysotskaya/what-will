@@ -12,6 +12,7 @@ export const createShoppingList = data => {
             .catch(er => dispatch({ type: 'FETCH_RESPONSE_CREATE_SHOPPING_LIST_FAILURE', error: er }))
     }    
 };
+
 export const displayShoppingList = () => {
     return dispatch => {
         dispatch({ type:'FETCH_RESPONSE_DISPLAY_SHOPPING_LIST_START', load:false})
@@ -21,6 +22,7 @@ export const displayShoppingList = () => {
             .catch((res) => dispatch({ type: 'FETCH_RESPONSE_DISPLAY_SHOPPING_LIST_FAILURE', error: res }))
     }
 }
+
 export const editCheckbox = (data) => {
     return dispatch => {
         fetch('/update-checkbox', {
@@ -34,6 +36,7 @@ export const editCheckbox = (data) => {
 
     }
 }
+
 export const deleteItem = data => {
     return dispatch => {
         fetch('/delete-item', {

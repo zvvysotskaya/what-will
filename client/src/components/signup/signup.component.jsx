@@ -4,16 +4,19 @@ import { connect } from 'react-redux';
 
 import { fetchSignup} from '../../redux/signup-login/signup-login.actions';
 
-const Signup = ({ fetchSignup, resp }) => {        
+const Signup = ({ fetchSignup, resp }) => { 
+    
     const [val, setVal] = useState({
         username: '',        
         email: '',
         password: '',
         confirmpassword: ''
     });
+
     useEffect(() => {
         setTimeout(() => document.getElementById('inp').focus(),90)
     }, [])
+
     const submit = (e) => {
         e.preventDefault();
         var data = {
@@ -27,9 +30,9 @@ const Signup = ({ fetchSignup, resp }) => {
             alert('Password does not match!');
             return;
         }
-        fetchSignup(data)
-        
+        fetchSignup(data)        
     }
+
     (function () {        
         setTimeout(() => {
             if (resp === 'Your account created successfully.') {
@@ -45,9 +48,9 @@ const Signup = ({ fetchSignup, resp }) => {
             email: '',
             password: '',
             confirmpassword: ''
-        })
-        
+        })        
     }
+
     return (
         <div className='container'>
             <div className='row justify-content-center'>
@@ -117,10 +120,12 @@ const Signup = ({ fetchSignup, resp }) => {
         </div>
     );       
 };
+
 const mapStateToProps = state => ({
     resp: state.account.response
 })
 const mapDispatchToProps = dispatch => ({
     fetchSignup: (val) => dispatch(fetchSignup(val))    
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

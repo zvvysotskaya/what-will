@@ -11,8 +11,7 @@ export const fetchSignup = (payload) => {
 
         })
             .then(res => (res.text()))
-            .then(res => dispatch({ type: 'FETCH_RESPONSE', response: res })
-            )
+            .then(res => dispatch({ type: 'FETCH_RESPONSE', response: res }))
             .catch((err) => dispatch({ type: 'FETCH_RESPONSE_FAILURE',error:err}));
     }
     

@@ -9,4 +9,5 @@ const TableThead = () => (
         </tr>
     </thead>
 );
+
 export default TableThead;

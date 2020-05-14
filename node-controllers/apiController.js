@@ -5,16 +5,17 @@ const mongodb = require('mongodb');
 const ObjectID = require('mongodb').ObjectID;
 let db;
 let connectionStrings = process.env.REACT_APP_DB_URL || process.env.MONGODB_URI
-mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
-    //assert.equal(null, err);
-    db = client.db('heroku_dz3lp7rl')//('ToDoApp');
+
+mongodb.connect(connectionStrings, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {    
+    db = client.db(process.env.REACT_APP_DB_NAME);
 });
+
 module.exports = function (app) {
     app.post('/create-user', function (req, res) {
         let safeUsername = sanitizeHTML(req.body.username, { allowedTags: [], allowedAttributes: {} })
         db.collection('users').findOne({ email: req.body.email })
             .then(dbResponse => {
-               // console.log(JSON.stringify(dbResponse))
+               
                 if (dbResponse) {
                     res.send('Such email already exists')
                 }               
@@ -38,6 +39,7 @@ module.exports = function (app) {
                 }
             }).catch(er=>console.log(er))
     })
+
     app.post('/login', function (req, res) {
         if (req.body.password == '') {
             res.send('Password cannot be empty')
@@ -76,7 +78,6 @@ module.exports = function (app) {
                 })
                 .catch(er => console.log(er))
         }
-
     })
 
     app.get('/isUserLoggedin', function (req, res) {
@@ -130,16 +131,19 @@ module.exports = function (app) {
                 
             })
     })
+
     app.get('/shoppingPage', function (req, res) {
         db.collection('items').find().toArray(function (err, items) {           
             res.send(items)
         })    
     })
+
     app.post('/update-item', function (req, res) {
         db.collection('items').findOneAndUpdate({ _id: new mongodb.ObjectId(req.body.id) }, { $set: { text: req.body.text } },
             res.send('success!')
         )
     })
+
     app.post('/delete-item', function (req, res) {
         db.collection('items').deleteOne({ _id: new mongodb.ObjectId(req.body.id) },
             res.send('deleted!!!')            

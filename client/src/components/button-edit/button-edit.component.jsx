@@ -1,9 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
-
-
 import CustomButton from '../custom-button/custom-button.component';
 
 const ButtonEdit = ({ children,...otherProps }) => {
@@ -19,9 +16,12 @@ const ButtonEdit = ({ children,...otherProps }) => {
                 .catch(err => (console.log(err)))
         }
     }
-    return (<div>
-        <CustomButton yellowBtn  {...otherProps} onClick={cl}>{children}</CustomButton>
-    </div>
-);
+
+    return (
+        <div>
+            <CustomButton yellowBtn  {...otherProps} onClick={cl}>{children}</CustomButton>
+        </div>
+    );
 }
+
 export default ButtonEdit;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editCheckbox } from '../../redux/shopping-list/shopping-list.actions'
+
+import { editCheckbox } from '../../redux/shopping-list/shopping-list.actions';
 
 const Checkbox = ({ item, editCheckbox }) => {
     const change=(e)=>{
@@ -19,7 +20,9 @@ const Checkbox = ({ item, editCheckbox }) => {
         </div>
     )
 }
+
 const mapDispatchToProps = dispatch => ({
     editCheckbox: (val) => dispatch(editCheckbox(val))
 })
+
 export default connect(null, mapDispatchToProps)(Checkbox);

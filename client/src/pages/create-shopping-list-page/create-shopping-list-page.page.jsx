@@ -9,9 +9,11 @@ import { displayShoppingList } from '../../redux/shopping-list/shopping-list.act
 
 
 const CreateShoppingListPage = ({ shoppingList, display }) => {
+
     useEffect(() => {
         display()
     }, [display])
+
     return (
         <div>
             <div className='container'>
@@ -30,10 +32,12 @@ const CreateShoppingListPage = ({ shoppingList, display }) => {
             </div>
         </div>)
 }
+
 const mapStateToProps = state => ({
     shoppingList: state.shop.responseOnDisplayShoppingList
 })
 const mapDispatchToProps = dispatch => ({
     display: () => dispatch(displayShoppingList())
 })
+
 export default connect(mapStateToProps, mapDispatchToProps )(CreateShoppingListPage);

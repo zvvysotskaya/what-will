@@ -6,6 +6,7 @@ import TableBodyDisplay from '../../components/table-body-display/table-body-dis
 import { displayShoppingList } from '../../redux/shopping-list/shopping-list.actions';
 
 const DisplayShoppingList = ({ shoppingList, display }) => {
+
     useEffect(() => {
         display()
     }, [display]
@@ -24,10 +25,12 @@ const DisplayShoppingList = ({ shoppingList, display }) => {
         </div>
     )
 }
+
 const mapStateToProps = state => ({
     shoppingList: state.shop.responseOnDisplayShoppingList
 })
 const mapDispatchToProps = dispatch => ({
     display: () => dispatch(displayShoppingList())
 })
+
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayShoppingList);

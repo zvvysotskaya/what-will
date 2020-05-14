@@ -20,4 +20,5 @@ const CustomButton = ({ children, blueBtn, yellowBtn, editMe, redBtn,...otherPro
         </div>
     );
 }
+
 export default CustomButton;

@@ -8,9 +8,8 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const compression = require('compression')
 const MongoStore = require('connect-mongo')(session)
-
-
 const app = express();
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
@@ -18,13 +17,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(sslRedirect());
 app.use(express.static('client/build'));
-app.use(compression())
+
 var forceSsl = function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
     return next();
 };
+
 app.use(session({
     secret: 'keyboard cat',
     store: new MongoStore({
@@ -38,18 +38,17 @@ app.use(session({
 const apiController = require('./node-controllers/apiController')
 apiController(app);
 
+app.use(compression())
+
 if (process.env.NODE_ENV === 'production') {
     app.use(forceSsl)
     //set static folder
-
     app.use(express.static('client/build'));
-
     app.get('*', function (req, res, next) {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     })
-
-
 }
+
 if (process.env.NODE_ENV != 'production') {
     app.use(express.static(path.join(__dirname, 'client/public')));  
 

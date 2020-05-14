@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Checkbox from '../checkbox/checkbox.component';
+
 const TableBodyDisplay = ({ item, index }) => {
     return (
         <tbody className='bg-white'>
@@ -12,4 +13,5 @@ const TableBodyDisplay = ({ item, index }) => {
         </tbody>
     )
 }
+
 export default TableBodyDisplay;

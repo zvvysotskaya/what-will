@@ -37,11 +37,13 @@ const Login = ({ fetchSignin, history, resp }) => {
             password: ''
         }); 
     }
+
     (function () {
         if (resp === 'Congrats!') {
             setTimeout(() => window.location = '/shoppingPage', 1500)
         }
     })()
+
     const createAccount = (e) => {
         e.preventDefault()
         return history.push('/signupPage')
@@ -109,6 +111,7 @@ const Login = ({ fetchSignin, history, resp }) => {
             </div>
         </div>);
 }
+
 const mapPropsToState = state => ({
     resp: state.account.responseSignin
 })
