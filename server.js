@@ -28,7 +28,7 @@ var forceSsl = function (req, res, next) {
 app.use(session({
     secret: 'keyboard cat',
     store: new MongoStore({
-        url: process.env.REACT_APP_DB_URL
+        url: process.env.REACT_APP_DB_URL || process.env.MONGODB_URI
     }),
     resave: false,
     saveUninitialized: false,
