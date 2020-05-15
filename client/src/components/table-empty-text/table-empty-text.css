@@ -1,0 +1,10 @@
+.table_empty_text {
+    border: 0.5rem blue;
+    box-shadow: 0 0 0 1rem #e6ccff;
+    border-radius: 12px;
+    font: bold 1rem sans-serif;
+    background: white;
+    margin: 2rem;
+    padding: 1rem;
+    outline-offset: 0.5rem;
+}
