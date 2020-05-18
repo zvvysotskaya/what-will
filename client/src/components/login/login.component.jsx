@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { fetchSignin } from '../../redux/signup-login/signup-login.actions';
-
+import CustomButton from '../custom-button/custom-button.component';
 const Login = ({ fetchSignin, history, resp }) => {  
     
     const [val, setVal] = useState({
@@ -51,22 +51,16 @@ const Login = ({ fetchSignin, history, resp }) => {
 
     return (
         <div className='container'>
-            <div className='row justify-content-center'>                
-                <div className='col-md-5 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>                    
+            <div className='row justify-content-between'>
+                <div className='col-md-4'>
+                    
+                    <div className='create_me_img mt-5 my-5' />
+                    <div className='flower2 mt-md-5 pt-md-5'/>
+                </div>
+                <div className='col-md-4 col-sm-8 justify-content-center border rounded mt-md-5 mt-0 mb-md-5 p-5 bg-yellow'>                    
                     <h3 className='text-center'>Login</h3>
                     <div className='col-md-12 d-flex justify-content-between'>
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
-                        <div className="blue_flower img-fluid" />
+                       
                     </div>                    
                     <div className={`alert text-center 
                                     ${resp === 'Password cannot be empty' || resp === 'Email cannot be empty' ||
@@ -101,13 +95,17 @@ const Login = ({ fetchSignin, history, resp }) => {
                             />
                         </div>
                         <div className='form-group py-4 text-center'>
-                        <button type="submit"  className="btn btn-lg btn-danger">Login</button>&nbsp;
-                        <button type='submit' onClick={clearVal} className="btn btn-lg btn-danger">Reset</button>
+                            <div className='d-md-flex'></div>
+                            <CustomButton type="submit" className="blueBtn btn-block">Login</CustomButton>&nbsp;
+                        <CustomButton type='submit' onClick={clearVal} className="redBtn btn-block">Reset</CustomButton>
                             <p className='py-4'>Do not have an account?</p>
-                            <button type='button' onClick={createAccount}>Create Account</button>
+                            <CustomButton className='yellowBtn' type='button' onClick={createAccount}>Create Account</CustomButton>
                         </div >
                     </form>
                 </div>
+                
+                    <div className='col-4 create_shopping_img  my-5' />
+                
             </div>
         </div>);
 }
