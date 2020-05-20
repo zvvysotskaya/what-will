@@ -28,18 +28,51 @@ a {
 }
 .flower2 {
     background-image: url(/images/what-will-transparent2.png);
-  height: 300px;
-   
+    height: 33rem;
+    width: 30rem;
+    background-position: center;
     background-size: cover;
 }
 .create_shopping_img {
     background-image: url(/images/shopping_list_transparent.png);
-    height: 19.5rem;
-    background-size: cover;
+    height:22rem;
+    background-size: auto;
     background-repeat: no-repeat;
+    background-position: center;
 }
 .create_me_img {
     background-image: url(/images/create_me.png);
     height: 200px;
     background-repeat: no-repeat;
+    background-position: center;
+}
+@media screen and (max-width:1024px) and (min-width:769px){
+    .create_shopping_img {
+        height: 19rem;
+        width: 20rem;
+        background-size: cover;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .create_me_img,.flower2{
+        display: none;
+    }
+    
+}
+.reset-enter{
+    opacity:0;
+    z-index:1;
+    position: absolute;
+}
+.reset-enter-active{
+    opacity: 1;
+    transition: opacity 2000ms;
+}
+.reset-exit{
+    opacity: 1;
+}
+.reset-exit-active{
+    opacity: 0;
+    transition: opacity 2000ms;
 }

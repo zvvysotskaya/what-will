@@ -19,7 +19,9 @@ const ButtonEdit = ({ children,...otherProps }) => {
 
     return (
         <div>
-            <CustomButton yellowBtn  {...otherProps} onClick={cl}>{children}</CustomButton>
+            
+                    <CustomButton yellowBtn  {...otherProps} onClick={cl}>{children}</CustomButton>
+                
         </div>
     );
 }

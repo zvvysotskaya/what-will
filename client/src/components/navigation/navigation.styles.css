@@ -1,0 +1,97 @@
+.myDropdown {
+    position: absolute;
+    z-index: 1;
+    width: 15rem;
+    height: 8.5rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border: 1.5px solid #9900cc;
+    border-radius: 5px;
+    line-height: 1rem;
+    font-size: 1.2rem;
+    color:dimgray!important;
+}
+.myDropdown a{
+    color: dimgray;
+}
+
+
+@media screen and (max-width: 350px) {
+    .myDropdown {
+        left: 10px;
+    }
+}
+@media only screen and (min-width: 351px) and (max-width:370px) {
+    .myDropdown {
+        left: 60px;
+    }
+}
+@media only screen and (min-width: 371px) and (max-width:400px) {
+    /* For portrait layouts only */
+    .myDropdown {
+        left: 78px;
+    }
+}
+@media only screen and (min-width: 401px) and (max-width:420px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 120px;
+    }
+}
+@media only screen and (min-width: 421px) and (max-width:440px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 140px;
+    }
+}
+@media only screen and (min-width: 441px) and (max-width:460px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 175px;
+    }
+}
+@media only screen and (min-width: 461px) and (max-width:480px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 225px;
+    }
+}
+@media only screen and (min-width: 481px) and (max-width:500px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 242px;
+    }
+}
+@media only screen and (min-width: 501px) and (max-width:530px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 270px;
+    }
+}
+@media only screen and (min-width: 531px) and (max-width:570px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 295px;
+    }
+}
+@media only screen and (min-width: 571px) and (max-width:610px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 320px;
+    }
+}
+@media only screen and (min-width: 611px) and (max-width:700px) {
+    /* For portrait layouts only */
+
+    .myDropdown {
+        left: 340px;
+    }
+}

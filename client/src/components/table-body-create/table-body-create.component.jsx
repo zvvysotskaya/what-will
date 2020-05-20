@@ -20,7 +20,7 @@ const TableBodyCreate = ({ item, index, deleteItem, deleteResponse }) => {
 
     (function () {
         if (deleteResponse === 'deleted!!!') {
-            return setTimeout(() => window.location.reload(), 100)
+            return setTimeout(() => window.location.reload(), 70)
         }
     })()
     
@@ -31,7 +31,15 @@ const TableBodyCreate = ({ item, index, deleteItem, deleteResponse }) => {
                 <td>{item.text}</td>
                 <td className='d-md-flex'>
                     <ButtonEdit data-id={item._id} >Edit</ButtonEdit>&nbsp;&nbsp;
-                    <ButtonDelete data-id={item._id} onClick={cl}>Delete</ButtonDelete>
+                    
+                            <ButtonDelete data-id={item._id} onClick={cl}>Delete</ButtonDelete>
+                       
+                    
+
+                    
+                           
+
+                        
                 </td>
             </tr>
         </tbody>
