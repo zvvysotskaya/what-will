@@ -2,8 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\button-edit",
+    "\\client\\src\\pages",
+    "\\client\\src\\redux",
+    "\\client\\src\\redux\\shopping-list",
     "\\node-controllers"
   ],
-  "SelectedNode": "\\server.js",
+  "SelectedNode": "\\client\\src\\App.js",
   "PreviewInSolutionExplorer": false
 }

@@ -26,7 +26,11 @@ const Navigation = () => {
     return (
         <div>
             <NavigationIcon onClick={smoothDropDownM} />
-            <CSSTransition in={dropD} classNames='reset' timeout={700}>
+            <CSSTransition in={dropD} classNames='reset' timeout={{
+                appear: 500,
+                enter: 80,
+                exit: 100
+            }}>
                 <div>{showDropD}</div>               
             </CSSTransition>
         </div>

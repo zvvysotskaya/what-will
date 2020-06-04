@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+
 import CustomButton from '../custom-button/custom-button.component';
+
 
 const ButtonEdit = ({ children,...otherProps }) => {
     
@@ -11,13 +13,15 @@ const ButtonEdit = ({ children,...otherProps }) => {
         if (userInput) {
             axios.post('/update-item', { text: userInput, id: e.target.getAttribute('data-id') })
                 .then(function () {
-                    window.location ='/createShoppingListPage'
-                })
-                .catch(err => (console.log(err)))
+                    
+                        window.location ='/createShoppingListPage'
+                    
+                    })
+                    .catch(err => (console.log(err)))
+            }
         }
-    }
-
-    return (
+    
+        return (
         <div>
             
                     <CustomButton yellowBtn  {...otherProps} onClick={cl}>{children}</CustomButton>

@@ -65,14 +65,16 @@ a {
     z-index:1;
     position: absolute;
 }
-.reset-enter-active{
+reset-enter-active{
     opacity: 1;
-    transition: opacity 2000ms;
+    transition: opacity 450ms ease-in;
 }
 .reset-exit{
     opacity: 1;
 }
-.reset-exit-active{
+reset-exit-active{
     opacity: 0;
-    transition: opacity 2000ms;
+    transition: opacity 450ms ease-in;
 }
+
+

@@ -51,10 +51,7 @@ const Login = ({ fetchSignin, history, resp }) => {
     const createAccount = (e) => {
         e.preventDefault()
         return history.push('/signupPage')
-    }
-    
-    
-               
+    }       
     
     return (
         <div className='container-fluid'>
@@ -72,10 +69,8 @@ const Login = ({ fetchSignin, history, resp }) => {
                                     resp === 'Invalid pasword / email!' ? 'alert-danger' : ''}
                                     ${resp === 'Congrats!' ? 'alert-info': ''}
                                     `}
-                >
-                    
-                        <div>{resp}</div>
-                    
+                >                    
+                        <div>{resp}</div>                    
                     </div>
                     <form onSubmit={handleSubmit} method='POST'>                        
                         <div className='form-group'>
