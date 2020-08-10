@@ -16,17 +16,22 @@ function App() {
     const location = useLocation()
   return (
       <div>
-          <Header />
-
-          <TransitionGroup>
           <CSSTransition
               key={location.key}
+              classNames="reset"
+              timeout={400}>
+              <Header />
+          </CSSTransition>
+          <TransitionGroup>
+              <CSSTransition
+                  key={location.key}
                   classNames="reset"
-              timeout={{
-                  appear: 200,
-                  enter: 400,
-                  exit: 100
-              }}>
+                  timeout={{
+                      appear: 200,
+                      enter: 400,
+                      exit: 100
+                  }}>
+         
               <Switch location={location}>
               <ErrorBoundary>
                   <Suspense fallback={<div className="spinner-border text-success justify-content-center" style={{

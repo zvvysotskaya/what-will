@@ -60,21 +60,25 @@ a {
     }
     
 }
-.reset-enter{
-    opacity:0;
-    z-index:1;
-    position: absolute;
+.reset-enter {
+    opacity: 0;
+    /**z-index: 1;
+    position: absolute;*/
+    transform: translateX(-100%);
 }
-reset-enter-active{
+reset-enter-active {
     opacity: 1;
     transition: opacity 450ms ease-in;
+    transform: translateX(0%)
 }
-.reset-exit{
+.reset-exit {
     opacity: 1;
+    transform: translateX(0%)
 }
-reset-exit-active{
+reset-exit-active {
     opacity: 0;
     transition: opacity 450ms ease-in;
+    transform: translateX(100%)
 }
 
 
